@@ -1,14 +1,19 @@
 package com.example.themoviedb.ui.movie
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.themoviedb.adapter.MoviesAdapter
 import com.example.themoviedb.databinding.ActivityMovieBinding
+import com.example.themoviedb.model.GenresItem
+import com.example.themoviedb.model.MoviesItem
 import com.example.themoviedb.ui.ViewModelFactory
+import com.example.themoviedb.ui.detail.DetailActivity
+import com.example.themoviedb.utils.ItemCallback
 
-class MovieActivity : AppCompatActivity() {
+class MovieActivity : AppCompatActivity(), ItemCallback {
     private lateinit var adapter: MoviesAdapter
     private lateinit var viewModel: MovieViewModel
     private lateinit var binding: ActivityMovieBinding
@@ -37,7 +42,7 @@ class MovieActivity : AppCompatActivity() {
     }
 
     private fun showRecyclerView() {
-        adapter = MoviesAdapter()
+        adapter = MoviesAdapter(this@MovieActivity)
 
         binding.rvMovies.layoutManager = GridLayoutManager(this, 3)
         binding.rvMovies.adapter = adapter
@@ -45,5 +50,14 @@ class MovieActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_DATA = "extra_data"
+    }
+
+    override fun onGenreClicked(data: GenresItem) {
+    }
+
+    override fun onMovieClicked(data: MoviesItem) {
+        val intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra(EXTRA_DATA, data.id)
+        startActivity(intent)
     }
 }

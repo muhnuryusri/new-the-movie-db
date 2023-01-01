@@ -27,6 +27,7 @@ android {
             buildTypes.each { it.buildConfigField "String", "BASE_URL","\"https://api.themoviedb.org/3/\"" }
             buildTypes.each { it.buildConfigField "String", "API_KEY","\"df85488eee9ce073511ebbdc83b82c45\"" }
             buildTypes.each { it.buildConfigField "String", "IMAGE_URL","\"https://image.tmdb.org/t/p/w1280/\"" }
+            buildTypes.each { it.buildConfigField "String", "TRAILER_URL","\"https://www.youtube.com/watch?v=\"" }
         }
     }
     compileOptions {
@@ -59,4 +60,6 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
+
+    implementation files('libs/YouTubeAndroidPlayerApi.jar')
 }

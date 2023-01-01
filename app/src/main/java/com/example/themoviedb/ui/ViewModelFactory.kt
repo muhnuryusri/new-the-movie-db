@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.themoviedb.data.MoviesRepository
 import com.example.themoviedb.di.Injection
+import com.example.themoviedb.ui.detail.DetailViewModel
 import com.example.themoviedb.ui.movie.MovieViewModel
 
 class ViewModelFactory private constructor(private val moviesRepository: MoviesRepository) : ViewModelProvider.NewInstanceFactory(){
@@ -28,6 +29,9 @@ class ViewModelFactory private constructor(private val moviesRepository: MoviesR
             }
             modelClass.isAssignableFrom(MovieViewModel::class.java) -> {
                 MovieViewModel(moviesRepository) as T
+            }
+            modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
+                DetailViewModel(moviesRepository) as T
             }
             else -> throw Throwable("Unknown ViewModel class :" + modelClass.name)
         }

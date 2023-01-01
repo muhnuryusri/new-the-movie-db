@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.themoviedb.adapter.GenresAdapter
 import com.example.themoviedb.databinding.ActivityMainBinding
 import com.example.themoviedb.model.GenresItem
+import com.example.themoviedb.model.MoviesItem
 import com.example.themoviedb.ui.MainViewModel
 import com.example.themoviedb.ui.ViewModelFactory
 import com.example.themoviedb.ui.detail.DetailActivity
@@ -51,5 +52,8 @@ class MainActivity : AppCompatActivity(), ItemCallback {
         val intent = Intent(this, MovieActivity::class.java)
         intent.putExtra(EXTRA_DATA, data.id)
         startActivity(intent)
+    }
+
+    override fun onMovieClicked(data: MoviesItem) {
     }
 }

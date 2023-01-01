@@ -1,9 +1,6 @@
 package com.example.themoviedb.data.api
 
-import com.example.themoviedb.model.GenresResponse
-import com.example.themoviedb.model.MoviesItem
-import com.example.themoviedb.model.MoviesResponse
-import com.example.themoviedb.model.ReviewResponse
+import com.example.themoviedb.model.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -26,6 +23,12 @@ interface ApiService {
         @Path("id") id: Int,
         @Query("api_key") apiKey: String
     ) : Call<MoviesItem>
+
+    @GET("movie/{id}/videos")
+    fun getTrailer(
+        @Path("id") id: Int,
+        @Query("api_key") apiKey: String,
+    ): Call<TrailerResponse>
 
     @GET("movie/{id}/reviews")
     fun getReviews(

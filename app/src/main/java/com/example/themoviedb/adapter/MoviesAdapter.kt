@@ -10,8 +10,9 @@ import com.example.themoviedb.databinding.ItemGenreBinding
 import com.example.themoviedb.databinding.ItemMovieBinding
 import com.example.themoviedb.model.GenresResponse
 import com.example.themoviedb.model.MoviesItem
+import com.example.themoviedb.utils.ItemCallback
 
-class MoviesAdapter: RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
+class MoviesAdapter(private val callback: ItemCallback): RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
     private val listItems = ArrayList<MoviesItem>()
 
     fun setData(data: List<MoviesItem>) {
@@ -39,6 +40,10 @@ class MoviesAdapter: RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
                     .centerCrop()
                     .apply(RequestOptions().override(290, 410))
                     .into(imgMovie)
+
+                movieItem.setOnClickListener {
+                    callback.onMovieClicked(data)
+                }
             }
         }
     }

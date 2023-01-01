@@ -49,6 +49,19 @@ class RemoteDataSource {
         })
     }
 
+    fun getTrailer(callback: LoadTrailerCallback, movieId: Int) {
+        val client = ApiConfig.getApiService().getTrailer(movieId, API_KEY)
+        client.enqueue(object : Callback<TrailerResponse> {
+            override fun onResponse(call: Call<TrailerResponse>, response: Response<TrailerResponse>) {
+                callback.onTrailerLoaded(response.body()?.results?.get(0))
+            }
+
+            override fun onFailure(call: Call<TrailerResponse>, t: Throwable) {
+                Log.e("RemoteDataSource", "getTrailer onFailure : ${t.message}")
+            }
+        })
+    }
+
     fun getReviews(callback: LoadReviewsCallback, reviewId: Int) {
         val client = ApiConfig.getApiService().getReviews(reviewId, API_KEY)
         client.enqueue(object : Callback<ReviewResponse> {
@@ -72,6 +85,10 @@ class RemoteDataSource {
 
     interface LoadDetailCallback {
         fun onDetailLoaded(movieDetail : MoviesItem?)
+    }
+
+    interface LoadTrailerCallback {
+        fun onTrailerLoaded(movieTrailer : VideosItem?)
     }
 
     interface LoadReviewsCallback {

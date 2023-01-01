@@ -1,6 +1,8 @@
 package com.example.themoviedb.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 data class ReviewResponse(
 
@@ -35,10 +37,8 @@ data class AuthorDetails(
 	val username: String? = null
 )
 
+@Parcelize
 data class ReviewItem(
-
-	@field:SerializedName("author_details")
-	val authorDetails: AuthorDetails? = null,
 
 	@field:SerializedName("updated_at")
 	val updatedAt: String? = null,
@@ -57,4 +57,4 @@ data class ReviewItem(
 
 	@field:SerializedName("url")
 	val url: String? = null
-)
+) : Parcelable
