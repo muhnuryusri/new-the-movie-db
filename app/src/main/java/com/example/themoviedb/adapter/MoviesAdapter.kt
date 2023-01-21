@@ -38,8 +38,10 @@ class MoviesAdapter(private val callback: ItemCallback): RecyclerView.Adapter<Mo
                 Glide.with(itemView.context)
                     .load(BuildConfig.IMAGE_URL + data.posterPath)
                     .centerCrop()
-                    .apply(RequestOptions().override(290, 410))
+                    .apply(RequestOptions().override(500, 700))
                     .into(imgMovie)
+                tvName.text = data.title
+                tvYear.text = data.releaseDate?.split("-".toRegex())?.first()
 
                 movieItem.setOnClickListener {
                     callback.onMovieClicked(data)
