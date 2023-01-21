@@ -53,7 +53,8 @@ class RemoteDataSource {
         val client = ApiConfig.getApiService().getTrailer(movieId, API_KEY)
         client.enqueue(object : Callback<TrailerResponse> {
             override fun onResponse(call: Call<TrailerResponse>, response: Response<TrailerResponse>) {
-                callback.onTrailerLoaded(response.body()?.results?.get(0))
+                val filteredList = ArrayList<TrailerResponse>()
+                callback.onTrailerLoaded(response.body()?.results?.last())
             }
 
             override fun onFailure(call: Call<TrailerResponse>, t: Throwable) {

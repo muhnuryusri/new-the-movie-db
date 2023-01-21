@@ -47,7 +47,7 @@ class MoviesRepository private constructor(private val remoteDataSource: RemoteD
                 if (movies != null) {
                     for (response in movies) {
                         with(response) {
-                            val movie = MoviesItem(id = id, posterPath = posterPath)
+                            val movie = MoviesItem(id = id, posterPath = posterPath, title = title, releaseDate = releaseDate)
                             movieList.add(movie)
                         }
                     }
@@ -68,6 +68,7 @@ class MoviesRepository private constructor(private val remoteDataSource: RemoteD
                             id = id,
                             backdropPath = backdropPath,
                             title = title,
+                            releaseDate = releaseDate,
                             runtime = runtime,
                             genres = genres,
                             overview = overview
@@ -88,7 +89,8 @@ class MoviesRepository private constructor(private val remoteDataSource: RemoteD
                     with(movieTrailer) {
                         val detailTrailer = VideosItem(
                             id = id,
-                            key = key
+                            key = key,
+                            type = type
                         )
                         trailerItem.postValue(detailTrailer)
                     }
