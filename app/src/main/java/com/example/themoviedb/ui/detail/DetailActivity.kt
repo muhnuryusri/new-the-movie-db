@@ -14,6 +14,7 @@ import com.example.themoviedb.BuildConfig.IMAGE_URL
 import com.example.themoviedb.R
 import com.example.themoviedb.adapter.ReviewsAdapter
 import com.example.themoviedb.databinding.ActivityDetailBinding
+import com.example.themoviedb.model.TrailerResponse
 import com.example.themoviedb.ui.ViewModelFactory
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
@@ -44,10 +45,11 @@ class DetailActivity : AppCompatActivity() {
                     Glide.with(this@DetailActivity)
                         .load(IMAGE_URL + movie.backdropPath)
                         .centerCrop()
-                        .apply(RequestOptions().override(510, 300))
+                        .apply(RequestOptions().override(1200, 800))
                         .into(binding.imgBanner)
 
                     tvTitle.text = movie.title
+                    tvRelease.text = movie.releaseDate
                     tvDuration.text = movie.runtime.toString() + " minutes"
                     tvOverview.text = movie.overview
                 }
