@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingHorizontal="18dp">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        app:cardCornerRadius="10dp"
         app:cardUseCompatPadding="true"
-        app:cardElevation="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,20 +23,18 @@
             android:orientation="vertical">
 
             <TextView
+                style="@style/Heading_Review"
                 android:id="@+id/tv_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/name"
-                android:fontFamily="sans-serif-medium"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:text="@string/name" />
 
             <TextView
+                style="@style/Content_Review"
                 android:id="@+id/tv_review"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/lorem_ipsum"
-                android:textSize="14sp" />
+                android:text="@string/lorem_ipsum"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
